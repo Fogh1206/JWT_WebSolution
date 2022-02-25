@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace JWTWebAPI
+﻿namespace JWTWebAPI.Models
 {
     public class User
     {

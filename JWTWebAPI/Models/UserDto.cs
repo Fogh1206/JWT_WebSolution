@@ -1,4 +1,4 @@
-﻿namespace JWTWebAPI
+﻿namespace JWTWebAPI.Models
 {
     // This is the User data transfer object.
     public class UserDto
