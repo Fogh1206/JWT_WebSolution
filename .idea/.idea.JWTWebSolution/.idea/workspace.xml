@@ -5,13 +5,7 @@
     <projectFile profileName="IIS Express">JWTWebAPI/JWTWebAPI.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01032812-01a5-47f6-969a-a4e3c9c066fe" name="Changes" comment="Correcting namespace to fit with folders.">
-      <change afterPath="$PROJECT_DIR$/JWTWebAPI/Controllers/MessageController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.JWTWebSolution/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JWTWebSolution/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JWTWebAPI/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JWTWebAPI/Controllers/AuthController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JWTWebAPI/JWTWebAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/JWTWebAPI/JWTWebAPI.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JWTWebAPI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JWTWebAPI/Program.cs" afterDir="false" />
-    </list>
+    <list default="true" id="01032812-01a5-47f6-969a-a4e3c9c066fe" name="Changes" comment="Correcting namespace to fit with folders." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
