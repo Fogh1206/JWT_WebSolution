@@ -5,7 +5,21 @@
     <projectFile profileName="IIS Express">JWTWebAPI/JWTWebAPI.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01032812-01a5-47f6-969a-a4e3c9c066fe" name="Changes" comment="Correcting namespace to fit with folders." />
+    <list default="true" id="01032812-01a5-47f6-969a-a4e3c9c066fe" name="Changes" comment="Adding admin role, and only letting users with admin role be able to use Get() method inside MessageController.">
+      <change afterPath="$PROJECT_DIR$/JWTWebAPI/Controllers/UserController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTWebAPI/Data/DataContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTWebAPI/Migrations/20220226025210_InitialCreate.Designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTWebAPI/Migrations/20220226025210_InitialCreate.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTWebAPI/Migrations/DataContextModelSnapshot.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTWebAPI/Services/IUser.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTWebAPI/Services/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.JWTWebSolution/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JWTWebSolution/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTWebAPI/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JWTWebAPI/Controllers/AuthController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTWebAPI/JWTWebAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/JWTWebAPI/JWTWebAPI.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTWebAPI/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JWTWebAPI/Models/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTWebAPI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JWTWebAPI/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTWebAPI/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/JWTWebAPI/appsettings.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,22 +34,23 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/esben/RiderProjects/JWTWebSolution/JWTWebAPI/Models/UserDto.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f80fb6bb02c046afaa530a1fac786236e0fa0/0a/e9e7c036/SymmetricSecurityKey.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/JWTWebAPI/Models/UserDto.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/esben/RiderProjects/JWTWebSolution/JWTWebAPI/Controllers/AuthController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/esben/RiderProjects/JWTWebSolution/JWTWebAPI/Models/User.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="25cWKCHB8HNLFmid1i9wYVHNZ09" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -69,6 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1645826791528</updated>
       <workItem from="1645826794567" duration="2916000" />
+      <workItem from="1645838498500" duration="8017000" />
     </task>
     <task id="LOCAL-00001" summary="Correcting namespace to fit with folders.">
       <created>1645826894356</created>
@@ -97,7 +113,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Implement_roles_into_tokens" />
+                        <option value="EntityFrameworkCore_Implementation" />
                       </list>
                     </value>
                   </entry>
@@ -111,6 +127,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Correcting namespace to fit with folders." />
     <option name="LAST_COMMIT_MESSAGE" value="Correcting namespace to fit with folders." />
   </component>
