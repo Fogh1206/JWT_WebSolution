@@ -1,9 +1,10 @@
 ﻿namespace JWTWebAPI.Models
 {
-    public class User
+    // This is the User data transfer object.
+    public class AuthenticationUserModel
     {
-        public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        
     }
 }

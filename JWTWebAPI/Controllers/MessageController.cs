@@ -6,10 +6,11 @@ namespace JWTWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MessageController : ControllerBase
     {
 
-        [HttpGet, Authorize(Roles = "Admin")]
+        [HttpGet]
         public async Task<ActionResult<string>> Get()
         {
             return Ok("Hello");

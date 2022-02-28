@@ -1,0 +1,54 @@
+﻿@page "/register"
+
+@using JWTBlazorApp.Data
+@inject IUser _userService
+@inject NavigationManager NavigationManager
+
+<div class="container d-flex flex-row">
+    <div class="body d-md-flex align-items-center justify-content-between">
+        
+        <div class="box-1 mt-md-0 mt-5">
+            <img src="https://images.pexels.com/photos/2033997/pexels-photo-2033997.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" class="" alt="">
+        </div>
+        <div class="box-2 d-flex flex-column h-100">
+            <p class="mb-1 h-1">Register</p>
+            <p class="text-muted mb-2">Insert your desired username and password in the fields below.</p>
+            <EditForm class="d-flex flex-column align-items-center" Model="@RegisterExample" OnValidSubmit="RegisterUser">
+                <ValidationSummary/>
+                <DataAnnotationsValidator/>
+                <p class="align-self-baseline">Username</p>
+                <InputText class="form-control d-inline-flex" @bind-Value="RegisterExample.Username"></InputText>
+                <p class="align-self-baseline">Password</p>
+                <InputText class="form-control d-inline-flex" @bind-Value="RegisterExample.Password"></InputText>
+                <button class="btn btn-primary" style="width: 100%; text-align: center;" type="submit">Register</button>
+            </EditForm>
+            <a class="text-muted mb-2" href="login">
+                Already have an account? Click here to log in
+            </a>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private AuthenticationUserModel RegisterExample { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        RegisterExample = new AuthenticationUserModel();
+    }
+
+    private async void RegisterUser()
+    {
+        AuthenticatedUserModel? user = await _userService.AddUser(RegisterExample);
+
+        if (user != null)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+        
+        Console.WriteLine(user.Username);
+        
+    }
+    
+}

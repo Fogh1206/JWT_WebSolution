@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using JWTWebAPI.Data;
 using JWTWebAPI.Services;
@@ -35,19 +36,22 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddScoped<IUser, UserService>();
-
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = "JwtBearer";
+    options.DefaultChallengeScheme = "JwtBearer";
+}).AddJwtBearer("JwtBearer", jwtBearerOptions =>
+{
+    jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters
     {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
-                .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
-            ValidateIssuer = false,
-            ValidateAudience = false
-        };
-    });
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("thisIsASuperSecretKey")),
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.FromMinutes(5)
+    };
+});
 
 var app = builder.Build();
 

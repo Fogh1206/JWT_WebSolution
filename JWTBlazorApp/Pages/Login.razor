@@ -1,0 +1,81 @@
+﻿@page "/login"
+@inject IAuthenticationService AuthService
+@inject NavigationManager NavigationManager
+
+@if (showAuthenticationError)
+{
+    <div class="alert alert-danger" role="alert">
+        <p>@authenticationErrorText</p>
+    </div>
+}
+
+<div class="container d-flex flex-row">
+    <div class="body d-md-flex align-items-center justify-content-between">
+        
+        <div class="box-1 mt-md-0 mt-5">
+            <img src="https://images.pexels.com/photos/2033997/pexels-photo-2033997.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" class="" alt="">
+        </div>
+        <div class="box-2 d-flex flex-column h-100">
+            <p class="mb-1 h-1">Login</p>
+            <p class="text-muted mb-2">Please insert your login credentials below.</p>
+            <EditForm class="d-flex flex-column align-items-center" Model="model" OnValidSubmit="ExecuteLogin">
+                <DataAnnotationsValidator/>
+                <ValidationSummary/>
+                <p class="align-self-baseline">Username</p>
+                <InputText class="form-control d-inline-flex" @bind-Value="model.Username"></InputText>
+                <ValidationMessage For="@(() => model.Username)"></ValidationMessage>
+                <p class="align-self-baseline">Password</p>
+                <InputText type="password" class="form-control d-inline-flex" @bind-Value="model.Password"></InputText>
+                <ValidationMessage For="@(() => model.Password)"></ValidationMessage>
+                <button class="btn btn-primary" style="width: 100%; text-align: center;" type="submit">Log in</button>
+            </EditForm>
+            <a class="text-muted mb-2" href="register">
+                Don't have an account yet? Click here to register
+            </a>
+        </div>
+    </div>
+</div>
+
+@code {
+    private AuthenticationUserModel model = new();
+
+    private bool showAuthenticationError = false;
+    private string authenticationErrorText = "";
+    
+    protected override void OnParametersSet()
+    {
+        model = new AuthenticationUserModel();
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+    }
+
+
+    private async Task ExecuteLogin()
+    {
+        showAuthenticationError = false;
+        AuthenticatedUserModel result = new();
+        
+        try
+        {
+            result = await AuthService.Login(model);
+        }
+        catch (Exception e)
+        {
+            authenticationErrorText = e.Message;
+        }
+
+        if (result is not null)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+        else
+        {
+            authenticationErrorText = "There was and error when trying to log in.";
+            showAuthenticationError = true;
+        }
+    }
+    
+}

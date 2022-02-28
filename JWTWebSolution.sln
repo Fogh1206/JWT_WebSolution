@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTWebAPI", "JWTWebAPI\JWTWebAPI.csproj", "{79977974-EB5F-4974-BB4C-AD0AAA6D0564}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTBlazorApp", "JWTBlazorApp\JWTBlazorApp.csproj", "{57D917A2-46F0-42ED-98EE-66C5B4289A46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -9,8 +11,14 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{79977974-EB5F-4974-BB4C-AD0AAA6D0564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79977974-EB5F-4974-BB4C-AD0AAA6D0564}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79977974-EB5F-4974-BB4C-AD0AAA6D0564}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79977974-EB5F-4974-BB4C-AD0AAA6D0564}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79977974-EB5F-4974-BB4C-AD0AAA6D0564}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{79977974-EB5F-4974-BB4C-AD0AAA6D0564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57D917A2-46F0-42ED-98EE-66C5B4289A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57D917A2-46F0-42ED-98EE-66C5B4289A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57D917A2-46F0-42ED-98EE-66C5B4289A46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57D917A2-46F0-42ED-98EE-66C5B4289A46}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{57D917A2-46F0-42ED-98EE-66C5B4289A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

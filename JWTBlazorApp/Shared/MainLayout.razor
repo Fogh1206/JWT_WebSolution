@@ -1,0 +1,44 @@
+﻿@inject IAuthenticationService AuthService
+@inject NavigationManager _navigationManager
+@using JWTBlazorApp.Pages
+@inherits LayoutComponentBase
+
+<PageTitle>JWTBlazorApp</PageTitle>
+
+<AuthorizeView>
+    <NotAuthorized>
+        @Body
+    </NotAuthorized>
+    <Authorized>
+
+        <div class="page">
+            <div class="sidebar">
+                <NavMenu/>
+            </div>
+
+            <main>
+                <div class="top-row px-4">
+
+                </div>
+
+                <article class="content px-4">
+                    @Body
+                </article>
+            </main>
+        </div>
+    </Authorized>
+</AuthorizeView>
+
+@code{
+
+    private void Login()
+    {
+        _navigationManager.NavigateTo("/login");
+    }
+    
+    private void Logout()
+    {
+        AuthService.Logout();
+    }
+
+}

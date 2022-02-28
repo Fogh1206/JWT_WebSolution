@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JWTWebAPI.Data;
 using JWTWebAPI.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
@@ -25,7 +26,7 @@ namespace JWTWebAPI.Services
             _context = context;
         }
 
-        public async Task<User> AddUser(UserDto inputUser)
+        public async Task<User> AddUser(User inputUser)
         {
             User newUser = new()
             {
@@ -50,6 +51,28 @@ namespace JWTWebAPI.Services
             return user;
         }
 
+        public async Task<User> GetUser(string username)
+        {
+            User user = await _context.Users.FirstAsync(u => u.Username.Equals(username));
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+            Console.WriteLine(user.Username);
+            return user;
+        }
+
+        public async Task<List<User>> GetUsers()
+        {
+            return await _context.Users.ToListAsync();
+        }
+
+        public async Task RemoveUser(int userId)
+        {
+            _context.Remove(GetUser(userId));
+            await _context.SaveChangesAsync();
+        }
+
         private static string CreatePasswordHash(string inputPassword)
         {
             
@@ -64,7 +87,7 @@ namespace JWTWebAPI.Services
             
         }
 
-        public bool VerifyPasswordHash(string inputPassword, string dbPassword)
+        public async Task<bool> VerifyPasswordHash(string inputPassword, string dbPassword)
         {
             
             byte[] dbSaltPassword = Convert.FromBase64String(dbPassword.Split(":")[0]);
@@ -77,7 +100,7 @@ namespace JWTWebAPI.Services
 
         public string CreateToken(User user)
         {
-            List<Claim> claims = new List<Claim>()
+            List<Claim> claims = new()
             {
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Role, "Admin")
@@ -86,16 +109,32 @@ namespace JWTWebAPI.Services
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
                 _configuration.GetSection("AppSettings:Token").Value));
 
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
             var token = new JwtSecurityToken(
                 claims: claims,
                 expires: DateTime.Now.AddDays(1),
-                signingCredentials: creds);
+                signingCredentials: credentials);
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
             
             return jwt;
+        }
+
+        public async Task<User> FindByUsernameAsync(string username)
+        {
+            User user = await _context.Users.FirstAsync(u => u.Username.Equals(username)) ?? throw new Exception($"No user named {username}");
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+            Console.WriteLine(user.Username);
+            return user;
+        }
+
+        public async Task<bool> CheckPasswordAsync(User user, string password)
+        {
+            return user.Password.Equals(password);
         }
     }
 }
