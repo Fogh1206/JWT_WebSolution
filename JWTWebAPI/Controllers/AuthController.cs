@@ -25,7 +25,7 @@ namespace JWTWebAPI.Controllers
             this._context = _context;
         }
 
-        [Route("/token")]
+        [Route("/login")]
         [HttpPost]
         public async Task<ActionResult<AuthenticatedUserModel>> CreateToken([FromBody] AuthenticationUserModel request)
         {
@@ -74,7 +74,7 @@ namespace JWTWebAPI.Controllers
                 new Claim(ClaimTypes.Name, username),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Nbf, new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString()),
-                new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.Now.AddDays(1)).ToUnixTimeSeconds().ToString())
+                new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.Now.AddMinutes(10)).ToUnixTimeSeconds().ToString())
             };
 
             var token = new JwtSecurityToken(
@@ -99,29 +99,6 @@ namespace JWTWebAPI.Controllers
         {
             return Ok(await _userService.AddUser(request));
         }
-
-        [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(User request)
-        {
-            User user;
-            try
-            {
-                user = await _userService.GetUser(request.Username);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-                
-            }
-
-            if (!await _userService.VerifyPasswordHash(request.Password, user.Password))
-            {
-                return BadRequest("Wrong password");
-            }
-
-            string token = _userService.CreateToken(user);
-            
-            return Ok(token);
-        }
+        
     }
 }

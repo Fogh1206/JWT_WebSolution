@@ -1,0 +1,29 @@
+﻿@page "/About"
+@using System.Security.Claims
+@inject IAuthenticationService AuthService
+<h3>About</h3>
+
+<AuthorizeView>
+    <Authorized>
+        <ul>
+            @foreach (Claim claim in context.User.Claims)
+            {
+                <li>@claim.Type : @claim.Value</li>
+            }
+        </ul>
+        
+        @message
+
+    </Authorized>
+</AuthorizeView>
+
+@code {
+
+    string message;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        message = await AuthService.GetHelloMessage();
+    }
+
+}

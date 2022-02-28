@@ -37,7 +37,7 @@ namespace JWTBlazorApp.Authentication
                 Encoding.UTF8,
                 "application/json");
             
-            var authResult = await _client.PostAsync($"{Uri}/token", content);
+            var authResult = await _client.PostAsync($"{Uri}/login", content);
             
             if (authResult.IsSuccessStatusCode is false)
             {
@@ -56,6 +56,21 @@ namespace JWTBlazorApp.Authentication
                     "bearer", 
                     result.AccessToken);
             return result;
+        }
+        
+        public async Task<string> GetHelloMessage()
+        {
+            _client.DefaultRequestHeaders.Authorization = 
+                new AuthenticationHeaderValue(
+                    "bearer", 
+                    await _sessionStorage.GetItemAsync<string>("authToken"));
+            
+            
+            var authResult = await _client.GetAsync("https://localhost:7166/api/Message");
+            if (!authResult.IsSuccessStatusCode) return authResult.StatusCode.ToString();
+            string message = await authResult.Content.ReadAsStringAsync();
+            return message;
+
         }
 
         public async Task Logout()

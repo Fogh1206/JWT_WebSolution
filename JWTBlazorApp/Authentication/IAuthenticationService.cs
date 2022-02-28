@@ -7,5 +7,6 @@ namespace JWTBlazorApp.Authentication
     {
         Task<AuthenticatedUserModel> Login(AuthenticationUserModel userForAuthentication);
         Task Logout();
+        Task<string> GetHelloMessage();
     }
 }
