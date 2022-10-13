@@ -69,7 +69,7 @@ namespace JWTWebAPI.Services
 
         public async Task RemoveUser(int userId)
         {
-            _context.Remove(GetUser(userId));
+            _context.Remove(_context.Users.FindAsync(userId).Result);
             await _context.SaveChangesAsync();
         }
 
@@ -90,11 +90,17 @@ namespace JWTWebAPI.Services
         public async Task<bool> VerifyPasswordHash(string inputPassword, string dbPassword)
         {
             
+            Console.WriteLine("Hello");
+            
             byte[] dbSaltPassword = Convert.FromBase64String(dbPassword.Split(":")[0]);
             byte[] dbHashPassword = Convert.FromBase64String(dbPassword.Split(":")[1]);
 
             using var hmac = new HMACSHA256(dbSaltPassword);
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(inputPassword));
+            
+            Console.WriteLine(inputPassword);
+            Console.WriteLine(dbPassword);
+            
             return computedHash.SequenceEqual(dbHashPassword);
         }
 
