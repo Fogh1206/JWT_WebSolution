@@ -46,5 +46,14 @@ namespace JWTBlazorApp.Data
             return await response.Content.ReadAsStringAsync();
 
         }
+
+        public async Task<List<User>> RetrieveAllUsers()
+        { 
+            HttpResponseMessage responseMessage = await _client.GetAsync(Uri + "/api/User");
+
+            return await responseMessage.Content.ReadFromJsonAsync<List<User>>();
+
+        }
+
     }
 }

@@ -1,10 +1,5 @@
-using System;
-using System.Net.Http;
 using JWTBlazorApp.Authentication;
 using JWTBlazorApp.Data;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);

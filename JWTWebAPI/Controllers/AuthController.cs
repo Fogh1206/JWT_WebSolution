@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -71,11 +72,12 @@ namespace JWTWebAPI.Controllers
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, username),
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(JwtRegisteredClaimNames.Nbf, new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString()),
-                new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.Now.AddMinutes(10)).ToUnixTimeSeconds().ToString())
+                new(ClaimTypes.Name, username),
+                new(JwtRegisteredClaimNames.Nbf, new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString()),
+                new(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.Now.AddMinutes(10)).ToUnixTimeSeconds().ToString())
             };
+            
+            claims.AddRange(user.Roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
             var token = new JwtSecurityToken(
                 new JwtHeader(
@@ -95,7 +97,7 @@ namespace JWTWebAPI.Controllers
         }
         
         [HttpPost("register")]
-        public async Task<ActionResult<User>> Register(User request)
+        public async Task<ActionResult<User>> Register(AuthenticationUserModel request)
         {
             return Ok(await _userService.AddUser(request));
         }

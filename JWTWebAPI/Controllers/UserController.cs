@@ -45,7 +45,31 @@ namespace JWTWebAPI.Controllers
             await _userService.RemoveUser(id);
             return Ok("");
         }
+        
+        
+        
+        [Route("/addRole/{username}/{role}")]
+        [HttpPut]
+        public async Task<ActionResult<AuthenticatedUserModel>> AddRole(string username,  Roles role)
+        {
+            await _userService.AddRole(username, role);
+            return Ok();
+        }
 
+        [Route("/getRoles/{username}")]
+        [HttpGet]
+        public async Task<ActionResult<List<Roles>>> GetRoles(string username)
+        {
+            return Ok(await _userService.GetRoles(username));
+        }
+
+        [Route("/deleteRole/{username}/{role}")]
+        [HttpDelete]
+        public async Task<ActionResult<AuthenticatedUserModel>> DeleteRole(string username,  Roles role)
+        {
+            await _userService.RemoveRole(username, role);
+            return Ok();
+        }
 
     }
 }

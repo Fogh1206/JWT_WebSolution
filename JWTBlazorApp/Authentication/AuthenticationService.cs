@@ -49,6 +49,8 @@ namespace JWTBlazorApp.Authentication
 
             await _sessionStorage.SetItemAsync("authToken", result.AccessToken);
             
+            Console.WriteLine("TOKEN: " + result.AccessToken);
+            
             ((AuthStateProvider)_authStateProvider).NotifyUserAuthentication(result.AccessToken);
 
             _client.DefaultRequestHeaders.Authorization = 

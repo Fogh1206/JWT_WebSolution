@@ -11,8 +11,8 @@
 
 .body {
     position: relative;
-    width: 720px;
-    height: 440px;
+    width: 100em;
+    height: 50em;
     margin: 20px auto;
     border: 1px solid #dddd;
     border-radius: 18px;

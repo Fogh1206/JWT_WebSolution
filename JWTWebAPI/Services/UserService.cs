@@ -26,12 +26,13 @@ namespace JWTWebAPI.Services
             _context = context;
         }
 
-        public async Task<User> AddUser(User inputUser)
+        public async Task<User> AddUser(AuthenticationUserModel inputUser)
         {
             User newUser = new()
             {
                 Username = inputUser.Username,
-                Password = CreatePasswordHash(inputUser.Password)
+                Password = CreatePasswordHash(inputUser.Password),
+                Roles = new[] { Roles.Worker.ToString() }
             };
             
             await _context.Users.AddAsync(newUser);
@@ -89,18 +90,16 @@ namespace JWTWebAPI.Services
 
         public async Task<bool> VerifyPasswordHash(string inputPassword, string dbPassword)
         {
-            
-            Console.WriteLine("Hello");
+
+            Console.WriteLine( "Input = " + inputPassword);
+            Console.WriteLine( "Db = " + dbPassword);
             
             byte[] dbSaltPassword = Convert.FromBase64String(dbPassword.Split(":")[0]);
             byte[] dbHashPassword = Convert.FromBase64String(dbPassword.Split(":")[1]);
 
             using var hmac = new HMACSHA256(dbSaltPassword);
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(inputPassword));
-            
-            Console.WriteLine(inputPassword);
-            Console.WriteLine(dbPassword);
-            
+
             return computedHash.SequenceEqual(dbHashPassword);
         }
 
@@ -141,6 +140,47 @@ namespace JWTWebAPI.Services
         public async Task<bool> CheckPasswordAsync(User user, string password)
         {
             return user.Password.Equals(password);
+        }
+
+        public async Task<User> AddRole(string username, Roles role)
+        {
+
+            var user = await FindByUsernameAsync(username);
+            
+            var newRoles = user.Roles.ToList();
+            newRoles.Add(role.ToString());
+
+            var result = await _context.Users.SingleOrDefaultAsync(u => u.Id == user.Id);
+            if (result == null) return user;
+            result.Roles = newRoles.ToArray();
+            await _context.SaveChangesAsync();
+
+            return result;
+
+        }
+
+        public async Task<User> RemoveRole(string username, Roles role)
+        {
+            
+            var user = await FindByUsernameAsync(username);
+            
+            var newRoles = user.Roles.ToList();
+            newRoles.Remove(role.ToString());
+
+            var result = await _context.Users.SingleOrDefaultAsync(u => u.Id == user.Id);
+            if (result == null) return user;
+            result.Roles = newRoles.ToArray();
+            await _context.SaveChangesAsync();
+
+            return result;
+        }
+
+        public async Task<List<string>> GetRoles(string username)
+        {
+            
+            var user = await FindByUsernameAsync(username);
+
+            return user.Roles.ToList();
         }
     }
 }

@@ -11,8 +11,31 @@
     <projectFile>WpfApplication1/WpfApplication1.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="01032812-01a5-47f6-969a-a4e3c9c066fe" name="Changes" comment="Correcting namespace to fit with folders.">
+    <list default="true" id="01032812-01a5-47f6-969a-a4e3c9c066fe" name="Changes" comment="Fixing the feature to remove users from DB. Issue was the Remove command was not Async as the save is Async.">
+      <change afterPath="$PROJECT_DIR$/JWTBlazorApp/JWTBlazorApp.csproj.DotSettings.user" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTBlazorApp/Models/User.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTBlazorApp/Pages/EmployeeOverview.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTBlazorApp/Pages/User.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JWTWebAPI/Models/Roles.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JWTWebSolution/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JWTWebSolution/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTBlazorApp/Authentication/AuthenticationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JWTBlazorApp/Authentication/AuthenticationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTBlazorApp/Data/IUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JWTBlazorApp/Data/IUser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTBlazorApp/Data/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JWTBlazorApp/Data/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTBlazorApp/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/JWTBlazorApp/Pages/Index.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTBlazorApp/Pages/Login.razor" beforeDir="false" afterPath="$PROJECT_DIR$/JWTBlazorApp/Pages/Login.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTBlazorApp/Pages/Register.razor" beforeDir="false" afterPath="$PROJECT_DIR$/JWTBlazorApp/Pages/Register.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTBlazorApp/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JWTBlazorApp/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTBlazorApp/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/JWTBlazorApp/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTBlazorApp/Shared/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/JWTBlazorApp/Shared/MainLayout.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTBlazorApp/Shared/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/JWTBlazorApp/Shared/NavMenu.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTBlazorApp/wwwroot/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/JWTBlazorApp/wwwroot/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTWebAPI/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JWTWebAPI/Controllers/AuthController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTWebAPI/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JWTWebAPI/Controllers/UserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTWebAPI/Data/DataContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JWTWebAPI/Data/DataContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTWebAPI/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JWTWebAPI/Models/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JWTWebAPI/Services/IUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JWTWebAPI/Services/IUser.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JWTWebAPI/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/JWTWebAPI/Services/UserService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +53,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="EntityFrameworkCore_Implementation" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -44,6 +67,8 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/608710c970c749fbf3b2770da238f7a1a2e9b7a2cf9d69ab012b02caefef833/LayoutComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ffcaccdb699eb1d5444850edb7642342f5bde7f870a89d68e13069a77aabac94/IdentityRole.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/JWT-WPF-Application/App.config" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/JWT-WPF-Application/App.xaml" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/JWT-WPF-Application/MainWindow.xaml" root0="SKIP_HIGHLIGHTING" />
@@ -61,20 +86,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ssh.settings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.JWTWebAPI">
+}</component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.JWTBlazorApp">
     <configuration name="JWT-WPF-Application" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -147,6 +174,10 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="Publish JWTBlazorApp to custom server" type="DotNetPublishAndUpload" factoryName="Publish to custom server">
+      <riderPublish configuration="Release" platform="Any CPU" runtime="Portable" server_id="094ff72a-2d15-4e7e-8f44-684d3e42f308" serverName="Raspberry Pi Top" target_framework="net6.0" uuid_high="6330116736988234477" uuid_low="-7426885736170218938" />
+      <method v="2" />
+    </configuration>
     <configuration name="JWTBlazorApp" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/JWTBlazorApp/JWTBlazorApp.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
@@ -215,7 +246,11 @@
       <workItem from="1646000405509" duration="3952000" />
       <workItem from="1646007748531" duration="7260000" />
       <workItem from="1665684790307" duration="778000" />
-      <workItem from="1665685909287" duration="3381000" />
+      <workItem from="1665685909287" duration="7056000" />
+      <workItem from="1665784791350" duration="5388000" />
+      <workItem from="1665837595040" duration="8843000" />
+      <workItem from="1665863205800" duration="6267000" />
+      <workItem from="1665920339539" duration="3483000" />
     </task>
     <task id="LOCAL-00001" summary="Correcting namespace to fit with folders.">
       <created>1645826894356</created>
@@ -238,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646011377214</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fixing the feature to remove users from DB. Issue was the Remove command was not Async as the save is Async.">
+      <created>1665698213660</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1665698213660</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,7 +300,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="EntityFrameworkCore_Implementation" />
+                        <option value="origin/master" />
                       </list>
                     </value>
                   </entry>
@@ -275,6 +317,7 @@
     <MESSAGE value="Correcting namespace to fit with folders." />
     <MESSAGE value="Added EntityFrameworkCore as persistence instead of file stored persistence.&#10;Removed logic from controller and inserted into UserService under Data folder.&#10;Storing hashed password as string instead of byte[] to be able to store the password salt and hashed password into one variable, and still be able to seperate them later." />
     <MESSAGE value="Added Blazor with authentication followed with login/register pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Blazor with authentication followed with login/register pages" />
+    <MESSAGE value="Fixing the feature to remove users from DB. Issue was the Remove command was not Async as the save is Async." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing the feature to remove users from DB. Issue was the Remove command was not Async as the save is Async." />
   </component>
 </project>

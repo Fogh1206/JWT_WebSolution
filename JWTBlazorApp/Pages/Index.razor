@@ -1,12 +1,19 @@
 @page "/"
+@using System.Security.Claims
 @inject IAuthenticationService AuthService
 
 <PageTitle>Index</PageTitle>
 
 <AuthorizeView>
     <Authorized>
-        <p>Hello @context.User.Identity.Name</p>
-        <button @onclick="logout">Log out</button>
+        <p>Hello
+            @if (context.User.Identity != null)
+            {
+                @context.User.Identity.Name
+            }
+        </p>
+        <p>Roles: @(context.User.FindFirst(r => r.Type == ClaimTypes.Role).Value)</p>
+        <button @onclick="Logout">Log out</button>
     </Authorized>
     <NotAuthorized>
         <Login/>
@@ -15,62 +22,18 @@
 
 @code {
 
-    private void logout()
+
+    protected override async Task OnInitializedAsync(){
+
+        Console.WriteLine();
+        
+        await base.OnInitializedAsync();
+
+    }
+
+    private void Logout()
     {
         AuthService.Logout();
     }
-
- 
-/*
-    private async Task SaveUser()
-    {
-
-        AuthenticationUserModel authenticationUserModel = new AuthenticationUserModel
-        {
-            Username = this.Username,
-            Password = this.Password
-        };
-        
-        await sessionStorage.SetItemAsync(keyAdd, authenticationUserModel);
-        await GetUserDetailsFromSessionStorage();
-        await GetSessionStorageLength();
-    }
     
-    private async Task RemoveUser()
-    {
-        await sessionStorage.RemoveItemAsync(keyRemove);
-        await GetUserDetailsFromSessionStorage();
-        await GetSessionStorageLength();
-    }
-
-    private async Task ClearSessionStorage()
-    {
-        await sessionStorage.ClearAsync();
-        await GetUserDetailsFromSessionStorage();
-        await GetSessionStorageLength();
-    }
-
-    private async Task GetUserDetailsFromSessionStorage()
-    {
-        AuthenticationUserModel authenticationUserModel = await sessionStorage.GetItemAsync<AuthenticationUserModel>("user");
-
-        try
-        {
-            UsernameFromSessionStorage = authenticationUserModel.Username;
-            PasswordFromSessionStorage = authenticationUserModel.Password;
-        }
-        catch (Exception e)
-        {
-            UsernameFromSessionStorage = "No username is in Session";
-            PasswordFromSessionStorage = "No username is in Session";
-        }
-
-    }
-    
-    private async Task GetSessionStorageLength()
-    {
-        Console.WriteLine(await sessionStorage.LengthAsync());
-        ItemInSessionStorage = await sessionStorage.LengthAsync();
-    }*/
-
 }

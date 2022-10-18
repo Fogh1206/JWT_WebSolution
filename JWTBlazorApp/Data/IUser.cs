@@ -7,5 +7,7 @@ namespace JWTBlazorApp.Data
     {
         Task<AuthenticatedUserModel> AddUser(AuthenticationUserModel inputAuthenticationUser);
         Task<string> LoginUser(AuthenticationUserModel inputAuthenticationUser);
+
+        Task<List<User>> RetrieveAllUsers();
     }
 }

@@ -1,0 +1,41 @@
+﻿@page "/EmployeeOverview"
+@using JWTBlazorApp.Data
+@inject IUser UserService
+
+<h3>EmployeeOverview</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Role(s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var user in _users)
+      {
+        <tr>
+          <td class="text-primary">
+            <a href="User/@user.Username"> @(user.FirstName + " " + user.LastName) </a>
+          </td>
+          <td> @string.Join(", ", user.Roles) </td>
+        </tr> 
+      }
+  </tbody>
+</table>
+
+@code {
+
+  private List<Models.User> _users = new();
+
+  protected override async Task OnInitializedAsync()
+  {
+
+    _users = await UserService.RetrieveAllUsers();
+    
+        
+    await base.OnInitializedAsync();
+
+  }
+  
+}
